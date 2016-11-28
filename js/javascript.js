@@ -8,17 +8,22 @@ function getallen(digit){
 
 	document.getElementById("history").innerHTML += digit;
 
-	if (operator == undefined) {
-		if (getal == undefined){ 
-			getal = digit;
-		} else {
-			getal += digit;
-		}
+	if (operator != null && secondgetal != null && antwoord != null) {
+		reset(digit);
 	} else {
-		if (secondgetal == undefined) {
-			secondgetal = digit;
+
+		if (operator == undefined) {
+			if (getal == undefined){ 
+				getal = digit;
+			} else {
+				getal += digit;
+			}
 		} else {
-			secondgetal += digit;
+			if (secondgetal == undefined) {
+				secondgetal = digit;
+			} else {
+				secondgetal += digit;
+			}
 		}
 	}
 }
@@ -92,9 +97,16 @@ function puntje() {
 	}
 }
 
-function reset() {
-	getal = operator = secondgetal = antwoord = undefined;
-	punt = [1,1];
+function reset(number) 
+{
+	if (number != null) {
+		memory = operator = secondgetal = antwoord = null;
+		document.getElementById("history").innerHTML = number;
+		getal = number;
+	}	else {
+		getal = operator = secondgetal = antwoord = undefined;
+		document.getElementById("history").innerHTML = "";
+	}	
 	document.getElementById("antwoord").innerHTML = "";
-	document.getElementById("history").innerHTML = "";
+	punt = [1,1];
 }
